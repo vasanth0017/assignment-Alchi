@@ -94,7 +94,7 @@ export default function Home() {
                 </span>
               </div>
             </button>
-          </div>
+          </div> 
           <div className="mt-8 md:mt-32 md:mr-12">
             <h2 className="text-xl sm:text-2xl max-w-xs">
               The ideas that improve your products
@@ -144,6 +144,9 @@ export default function Home() {
               <p className="text-white text-xs text-center">
                 View <br /> Projects
               </p>
+              <div className="absolute -bottom-3 -left-1 transform translate-x-1/2">
+                <Image src="/arrow.svg" alt="background" width={30} height={30} />
+              </div>
             </div>
             <div className="h-16 sm:h-20 mt-6 border-2 py-10 sm:py-14 px-16 sm:px-20 border-green-500 rounded-full flex items-center justify-center relative">
               <p className="text-white text-xs text-center">
