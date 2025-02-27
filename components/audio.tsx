@@ -104,7 +104,12 @@ export default function AudioPlayer({ src }: { src: string }) {
           max="100"
           value={(currentTime / duration) * 100 || 0}
           onChange={handleSeek}
-          className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+          className="w-full h-2 bg-gray-700 rounded-lg appearance-none accent-blue-500 cursor-pointer"
+          style={{
+            background: `linear-gradient(to right, #3b82f6 ${
+              (currentTime / duration) * 100
+            }%, #374151 ${(currentTime / duration) * 100}%)`,
+          }}
         />
       </div>
 
@@ -128,6 +133,11 @@ export default function AudioPlayer({ src }: { src: string }) {
           value={isMuted ? 0 : volume * 100}
           onChange={handleVolumeChange}
           className="w-24 h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+          style={{
+            background: `linear-gradient(to right, #3b82f6 ${
+              volume * 100
+            }%, #374151 ${volume * 100}%)`,
+          }}
         />
       </div>
     </div>
