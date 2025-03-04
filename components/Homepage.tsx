@@ -1,6 +1,6 @@
 "use client";
 
-// import AudioPlayer from "@/components/audio";
+import AudioPlayer from "@/components/audio";
 import {
   ChartNoAxesGantt,
   Menu,
@@ -58,7 +58,10 @@ export default function Home() {
               <Search className="text-white" />
             </button>
             <button className="px-4 py-2 rounded-lg">
-              <ChartNoAxesGantt  className="text-white h-4 w-4" />
+              <ChartNoAxesGantt  onClick={() => {
+                signOut();
+                router.push("/sign-in");
+              }} className="text-white h-4 w-4" />
             </button>
           </div>
         </div>
@@ -228,7 +231,7 @@ export default function Home() {
       </div>
 
       {/* Audio Modal */}
-      {/* {openAudio && (
+      {openAudio && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-gray-900 text-white p-4 sm:p-6 rounded-lg w-full max-w-xs sm:max-w-sm md:max-w-md shadow-lg relative">
             <button
@@ -248,7 +251,7 @@ export default function Home() {
             <AudioPlayer src="/audio.mp3" />
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 }
