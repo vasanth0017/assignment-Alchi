@@ -13,6 +13,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import GenerateQR from "./qr-code";
 
 export default function Home() {
   const [openAudio, setOpenAudio] = useState(false);
@@ -251,7 +252,9 @@ export default function Home() {
             <AudioPlayer src="/audio.mp3" />
           </div>
         </div>
+
       )}
+      <GenerateQR />
     </div>
   );
 }
