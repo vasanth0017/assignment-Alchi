@@ -2,10 +2,33 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
+import { Loader } from "lucide-react";
+import Image from "next/image";
 
 export default  function LoginPage() {
   const [email, setEmail] = useState("");
+  const [googleIsLoading, setGoogleIsLoading] = useState(false)
   console.log("email", email);
+
+  const socialAction = async (provider: string) => {
+    if (provider === 'google') {
+      setGoogleIsLoading(true)
+    }
+
+    await signIn(provider, {
+      callbackUrl: '/',
+      redirect: true,
+    }).then((callback) => {
+        console.log("callback", callback);
+      if (callback?.error) {
+        toast.error(
+          'An error occurred while trying to login. Please try again.',
+        )
+      }
+
+      setGoogleIsLoading(false)
+    })
+  }
   const handleEmailSignIn = async () => {
     if (!email) {
       toast.error("Please enter a valid email address.");
@@ -42,6 +65,25 @@ export default  function LoginPage() {
       >
         Send Login Link
       </button>
+      <button
+              onClick={() => socialAction('google')}
+              className="flex items-center gap-2 justify-center h-12 rounded-lg"
+            >
+              {googleIsLoading ? (
+                <Loader className="animate-spin w-5 h-5" />
+              ) : (
+                <>
+                  <Image
+                    src={'/google.svg'}
+                    width={22}
+                    height={22}
+                    alt="Google"
+                    priority
+                  />
+                  Sign In with Google
+                </>
+              )}
+            </button>
     </div>
   );
 }

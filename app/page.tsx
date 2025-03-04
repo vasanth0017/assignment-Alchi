@@ -7,6 +7,6 @@ import { getServerSession } from "next-auth"
 export default async function Page() {
     const session:any = await getServerSession(authOptions);
     const email = session?.user?.email;
-    console.log("session", session);
+    console.log("sessionsdfgfthfdx", session);
     return <Home />;
 }
