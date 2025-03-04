@@ -15,7 +15,7 @@ import React, { useState } from "react";
 export default function Home() {
   const [openAudio, setOpenAudio] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const users = ["vaanth", "bala", "siva", "sathish"];
   return (
     <div
       className="min-h-screen flex items-center justify-center"
@@ -25,11 +25,11 @@ export default function Home() {
         className="bg-black mt-4 sm:mt-8 md:mt-12 mx-4 sm:mx-8 md:mx-12 w-full h-[93%] shadow-lg rounded-t-3xl bg-cover bg-center relative"
         style={{
           backgroundImage: "url('/backGro.png')",
-          backgroundSize: "contain",
+          backgroundSize: "1000px",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
-      >
+      > 
         {/* Navbar */}
         <div className="flex flex-row items-center justify-between px-4 sm:px-6 md:px-10 absolute top-0 left-0 w-full p-4 text-white ">
           <h1 className="text-xl sm:text-2xl font-bold">Navbar</h1>
@@ -110,19 +110,14 @@ export default function Home() {
             <p className="text-sm md:text-md max-w-xs mt-3">
               Be among the first founders to join the community and get access
             </p>
-            <div className="flex items-center mt-4">
-              <div className="rounded-full p-2 w-8 sm:w-10 h-8 sm:h-10 bg-gray-300 flex items-center justify-center border border-white">
-                <UserRound className="text-black h-4 w-4 sm:h-5 sm:w-5" />
-              </div>
-              <div className="rounded-full p-2 w-8 sm:w-10 h-8 sm:h-10 bg-gray-300 flex items-center justify-center border border-white -ml-3">
-                <UserRound className="text-black h-4 w-4 sm:h-5 sm:w-5" />
-              </div>
-              <div className="rounded-full p-2 w-8 sm:w-10 h-8 sm:h-10 bg-gray-300 flex items-center justify-center border border-white -ml-3">
-                <UserRound className="text-black h-4 w-4 sm:h-5 sm:w-5" />
-              </div>
-              <div className="rounded-full p-2 w-8 sm:w-10 h-8 sm:h-10 bg-gray-300 flex items-center justify-center border border-white -ml-3">
-                <UserRound className="text-black h-4 w-4 sm:h-5 sm:w-5" />
-              </div>
+            <div className="flex flex-row mt-3">
+              {users.map((user, index) => (
+                <div key={index}  className={`rounded-full flex p-2 w-8 sm:w-10 h-8 sm:h-10 bg-gray-300 items-center justify-center border border-white ${
+                  index !== 0 ? "-ml-3" : ""
+                }`} > 
+                  {user?.charAt(0).toUpperCase()}
+                </div>
+              ))}
             </div>
           </div>
         </div>
