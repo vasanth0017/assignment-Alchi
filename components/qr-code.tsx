@@ -7,7 +7,7 @@ export default function GenerateQR() {
    
   const [uniqueId, setUniqueId] = useState(() => Date.now().toString());
  const code = "9469d599-7a58-469c-b6cf-733b112ec80b"
-  const qrData = `http://localhost:3000/testform?code=${code}`;
+const qrData = `${process.env.NEXT_PUBLIC_URL}?code=${code}`;
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
