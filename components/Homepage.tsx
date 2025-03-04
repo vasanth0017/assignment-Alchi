@@ -1,6 +1,6 @@
 "use client";
 
-import AudioPlayer from "@/components/audio";
+// import AudioPlayer from "@/components/audio";
 import {
   ChartNoAxesGantt,
   Menu,
@@ -11,11 +11,14 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [openAudio, setOpenAudio] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const users = ["vaanth", "bala", "siva", "sathish"];
+  const router = useRouter();
   return (
     <div
       className="min-h-screen flex items-center justify-center"
@@ -55,7 +58,7 @@ export default function Home() {
               <Search className="text-white" />
             </button>
             <button className="px-4 py-2 rounded-lg">
-              <ChartNoAxesGantt className="text-white h-4 w-4" />
+              <ChartNoAxesGantt  className="text-white h-4 w-4" />
             </button>
           </div>
         </div>
@@ -74,7 +77,7 @@ export default function Home() {
               <button className="px-4 py-2 rounded-lg">
                 <Search className="text-white" />
               </button>
-              <button className="px-4 py-2 rounded-lg">
+              <button  className="px-4 py-2 rounded-lg">
                 <ChartNoAxesGantt className="text-white h-4 w-4" />
               </button>
             </div>
@@ -225,7 +228,7 @@ export default function Home() {
       </div>
 
       {/* Audio Modal */}
-      {openAudio && (
+      {/* {openAudio && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-gray-900 text-white p-4 sm:p-6 rounded-lg w-full max-w-xs sm:max-w-sm md:max-w-md shadow-lg relative">
             <button
@@ -245,7 +248,7 @@ export default function Home() {
             <AudioPlayer src="/audio.mp3" />
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
