@@ -14,10 +14,12 @@ import React, { useState } from "react";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import GenerateQR from "./qr-code";
+import QRScanner from "./scanner";
 
 export default function Home() {
   const [openAudio, setOpenAudio] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showScanner, setShowScanner] = useState(false);
   const users = ["vaanth", "bala", "siva", "sathish"];
   const router = useRouter();
   return (
@@ -33,11 +35,17 @@ export default function Home() {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}
-      > 
+      >
         {/* Navbar */}
         <div className="flex flex-row items-center justify-between px-4 sm:px-6 md:px-10 absolute top-0 left-0 w-full p-4 text-white ">
           <h1 className="text-xl sm:text-2xl font-bold">Navbar</h1>
-
+          <button
+            onClick={() => setShowScanner(true)}
+            className="bg-blue-600 text-white px-4 py-2 rounded-md"
+          >
+            Open QR Scanner
+          </button>
+          {showScanner && <QRScanner />}
           <button
             className="md:hidden p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -59,10 +67,13 @@ export default function Home() {
               <Search className="text-white" />
             </button>
             <button className="px-4 py-2 rounded-lg">
-              <ChartNoAxesGantt  onClick={() => {
-                signOut();
-                router.push("/sign-in");
-              }} className="text-white h-4 w-4" />
+              <ChartNoAxesGantt
+                onClick={() => {
+                  signOut();
+                  router.push("/sign-in");
+                }}
+                className="text-white h-4 w-4"
+              />
             </button>
           </div>
         </div>
@@ -81,7 +92,7 @@ export default function Home() {
               <button className="px-4 py-2 rounded-lg">
                 <Search className="text-white" />
               </button>
-              <button  className="px-4 py-2 rounded-lg">
+              <button className="px-4 py-2 rounded-lg">
                 <ChartNoAxesGantt className="text-white h-4 w-4" />
               </button>
             </div>
@@ -119,9 +130,12 @@ export default function Home() {
             </p>
             <div className="flex flex-row mt-3">
               {users.map((user, index) => (
-                <div key={index}  className={`rounded-full flex p-2 w-8 sm:w-10 h-8 sm:h-10 bg-gray-300 items-center justify-center border border-white ${
-                  index !== 0 ? "-ml-3" : ""
-                }`} > 
+                <div
+                  key={index}
+                  className={`rounded-full flex p-2 w-8 sm:w-10 h-8 sm:h-10 bg-gray-300 items-center justify-center border border-white ${
+                    index !== 0 ? "-ml-3" : ""
+                  }`}
+                >
                   {user?.charAt(0).toUpperCase()}
                 </div>
               ))}
@@ -252,7 +266,6 @@ export default function Home() {
             <AudioPlayer src="/audio.mp3" />
           </div>
         </div>
-
       )}
       <GenerateQR />
     </div>
