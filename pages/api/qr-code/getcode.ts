@@ -1,9 +1,8 @@
 import db from "@/prisma/db";
 
-
-
-const handler = async(req:any, res:any) => {
-  if (req.method !== "GET") return res.status(405).json({ message: "Method not allowed" });
+const handler = async (req: any, res: any) => {
+  if (req.method !== "GET")
+    return res.status(405).json({ message: "Method not allowed" });
 
   const { code } = req.query;
 
@@ -18,5 +17,5 @@ const handler = async(req:any, res:any) => {
   } catch (error) {
     return res.status(500).json({ error: "Error fetching messages" });
   }
-}
+};
 export default handler;

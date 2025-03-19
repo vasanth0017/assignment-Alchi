@@ -15,8 +15,11 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import GenerateQR from "./qr-code";
 import QRScanner from "./scanner";
+import BlogList from "./blogs";
+
 
 export default function Home() {
+
   const [openAudio, setOpenAudio] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showScanner, setShowScanner] = useState(false);
@@ -140,6 +143,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
+            <BlogList />
           </div>
         </div>
 
@@ -221,6 +225,7 @@ export default function Home() {
                 />
               </div>
             </div>
+      
           </div>
 
           <div
@@ -243,6 +248,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+
       </div>
 
       {/* Audio Modal */}
